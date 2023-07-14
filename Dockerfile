@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.7.1-devel-ubuntu20.04
+FROM nvidia/cuda:12.2.0-devel-ubuntu20.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -33,7 +33,7 @@ RUN pip install sentencepiece
 
 RUN pip install triton==1.0.0
 
-RUN pip install git+https://github.com/microsoft/DeepSpeed.git@v0.9.1
+RUN pip install git+https://github.com/microsoft/DeepSpeed.git@v0.9.5
 
 RUN pip install git+https://github.com/microsoft/DeepSpeed-MII.git
 
