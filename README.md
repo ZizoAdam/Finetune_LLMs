@@ -47,3 +47,11 @@ You will then run the downloaded program with sudo.
 1. First, build the docker image by running ```build_image.sh```.  If you recieve an error about not being able to find the docker image, update to a newer cuda version.  The images are periodically depreacated.  Then open a PR so you can fix this issue for others.  Building the docker image can take many minutes.
 2. Run ```run_image.sh```.  This script runs the docker image that was just built and mounts the current directory to ```/workspace``` inside of the docker container.  All GPUs in the system will be passed through.  Additionally, to prevent downloading models each time this container is ran, your ```.cache``` will also be passed through.
 3. This image can now be used for finetuning a model with GPUs, or for using DeepSpeed inference.  Navigate to another folder for more information
+
+### Notes
+
+Hi, I am Adam and I forked and made very minor tweaks to this project. Here are some notes on errors I ran into that may help on your journey.
+
+- Nvme loading not working: Install libaio-dev both with sudo apt-get AND conda, you should only need one but I believe that for some reason it struggles to pick up the CFLAGS and DFLAGS environment variables otherwise. Failing that, check those environment variables.
+- OOM error? Add more swap space, 128gb is not enough RAM even if you calculate it to be enough RAM.
+- AdamW and Adam optimisers not working? Use NAdam with the option ```"zero_allow_untested_optimizer": true``` in the deepspeed config .json you're using.
