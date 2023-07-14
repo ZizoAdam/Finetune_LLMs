@@ -53,5 +53,5 @@ You will then run the downloaded program with sudo.
 Hi, I am Adam and I forked and made very minor tweaks to this project. Here are some notes on errors I ran into that may help on your journey.
 
 - Nvme loading not working: Install libaio-dev both with sudo apt-get AND conda, you should only need one but I believe that for some reason it struggles to pick up the CFLAGS and DFLAGS environment variables otherwise. Failing that, check those environment variables.
-- OOM error? Add more swap space, 128gb is not enough RAM even if you calculate it to be enough RAM.
+- OOM error (error code 1, it doesn't tell you that it's an OOM error)? Add more swap space, 128gb is not enough RAM even if you calculate it to be enough RAM.
 - AdamW and Adam optimisers not working? Use NAdam with the option ```"zero_allow_untested_optimizer": true``` in the deepspeed config .json you're using.
